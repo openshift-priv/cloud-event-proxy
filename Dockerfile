@@ -5,8 +5,8 @@ RUN mkdir -p /tmp/yum_temp; mv /etc/yum.repos.d/*.repo /tmp/yum_temp/ || true
 COPY .oit/unsigned.repo /etc/yum.repos.d/
 ADD https://certs.corp.redhat.com/certs/Current-IT-Root-CAs.pem /tmp
 # End Konflux-specific steps
-ENV __doozer=update BUILD_RELEASE=202410161955.p0.g8f61fa8.assembly.test.el9 BUILD_VERSION=v4.18.0 OS_GIT_MAJOR=4 OS_GIT_MINOR=18 OS_GIT_PATCH=0 OS_GIT_TREE_STATE=clean OS_GIT_VERSION=4.18.0-202410161955.p0.g8f61fa8.assembly.test.el9 SOURCE_GIT_TREE_STATE=clean __doozer_group=openshift-4.18 __doozer_key=cloud-event-proxy __doozer_uuid_tag=ose-cloud-event-proxy-rhel9-v4.18.0-20241016.195524 __doozer_version=v4.18.0 
-ENV __doozer=merge OS_GIT_COMMIT=8f61fa8 OS_GIT_VERSION=4.18.0-202410161955.p0.g8f61fa8.assembly.test.el9-8f61fa8 SOURCE_DATE_EPOCH=1729003374 SOURCE_GIT_COMMIT=8f61fa873c8f83da4c07c75be03f57d799457a5c SOURCE_GIT_TAG=8f61fa8 SOURCE_GIT_URL=https://github.com/redhat-cne/cloud-event-proxy 
+ENV __doozer=update BUILD_RELEASE=202410241522.p0.g6aefbbe.assembly.test.el9 BUILD_VERSION=v4.18.0 OS_GIT_MAJOR=4 OS_GIT_MINOR=18 OS_GIT_PATCH=0 OS_GIT_TREE_STATE=clean OS_GIT_VERSION=4.18.0-202410241522.p0.g6aefbbe.assembly.test.el9 SOURCE_GIT_TREE_STATE=clean __doozer_group=openshift-4.18 __doozer_key=cloud-event-proxy __doozer_uuid_tag=ose-cloud-event-proxy-rhel9-v4.18.0-20241024.152230 __doozer_version=v4.18.0 
+ENV __doozer=merge OS_GIT_COMMIT=6aefbbe OS_GIT_VERSION=4.18.0-202410241522.p0.g6aefbbe.assembly.test.el9-6aefbbe SOURCE_DATE_EPOCH=1729625102 SOURCE_GIT_COMMIT=6aefbbef95316c07d1fb9149416d628c3c251343 SOURCE_GIT_TAG=6aefbbe SOURCE_GIT_URL=https://github.com/redhat-cne/cloud-event-proxy 
 ENV GO111MODULE=off
 ENV CGO_ENABLED=1
 ENV COMMON_GO_ARGS=-race
@@ -18,15 +18,15 @@ COPY . .
 
 RUN hack/build-go.sh
 
-FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev-test:openshift-enterprise-base-rhel9-v4.18.0-20241016.195524 AS bin
+FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev-test:openshift-enterprise-base-rhel9-v4.18.0-20241024.152230 AS bin
 
 # Start Konflux-specific steps
 RUN mkdir -p /tmp/yum_temp; mv /etc/yum.repos.d/*.repo /tmp/yum_temp/ || true
 COPY .oit/unsigned.repo /etc/yum.repos.d/
 ADD https://certs.corp.redhat.com/certs/Current-IT-Root-CAs.pem /tmp
 # End Konflux-specific steps
-ENV __doozer=update BUILD_RELEASE=202410161955.p0.g8f61fa8.assembly.test.el9 BUILD_VERSION=v4.18.0 OS_GIT_MAJOR=4 OS_GIT_MINOR=18 OS_GIT_PATCH=0 OS_GIT_TREE_STATE=clean OS_GIT_VERSION=4.18.0-202410161955.p0.g8f61fa8.assembly.test.el9 SOURCE_GIT_TREE_STATE=clean __doozer_group=openshift-4.18 __doozer_key=cloud-event-proxy __doozer_uuid_tag=ose-cloud-event-proxy-rhel9-v4.18.0-20241016.195524 __doozer_version=v4.18.0 
-ENV __doozer=merge OS_GIT_COMMIT=8f61fa8 OS_GIT_VERSION=4.18.0-202410161955.p0.g8f61fa8.assembly.test.el9-8f61fa8 SOURCE_DATE_EPOCH=1729003374 SOURCE_GIT_COMMIT=8f61fa873c8f83da4c07c75be03f57d799457a5c SOURCE_GIT_TAG=8f61fa8 SOURCE_GIT_URL=https://github.com/redhat-cne/cloud-event-proxy 
+ENV __doozer=update BUILD_RELEASE=202410241522.p0.g6aefbbe.assembly.test.el9 BUILD_VERSION=v4.18.0 OS_GIT_MAJOR=4 OS_GIT_MINOR=18 OS_GIT_PATCH=0 OS_GIT_TREE_STATE=clean OS_GIT_VERSION=4.18.0-202410241522.p0.g6aefbbe.assembly.test.el9 SOURCE_GIT_TREE_STATE=clean __doozer_group=openshift-4.18 __doozer_key=cloud-event-proxy __doozer_uuid_tag=ose-cloud-event-proxy-rhel9-v4.18.0-20241024.152230 __doozer_version=v4.18.0 
+ENV __doozer=merge OS_GIT_COMMIT=6aefbbe OS_GIT_VERSION=4.18.0-202410241522.p0.g6aefbbe.assembly.test.el9-6aefbbe SOURCE_DATE_EPOCH=1729625102 SOURCE_GIT_COMMIT=6aefbbef95316c07d1fb9149416d628c3c251343 SOURCE_GIT_TAG=6aefbbe SOURCE_GIT_URL=https://github.com/redhat-cne/cloud-event-proxy 
 COPY --from=builder /go/src/github.com/redhat-cne/cloud-event-proxy/build/cloud-event-proxy /
 COPY --from=builder /go/src/github.com/redhat-cne/cloud-event-proxy/plugins/*.so /plugins/
 
@@ -47,8 +47,8 @@ LABEL \
         io.openshift.maintainer.project="OCPBUGS" \
         io.openshift.maintainer.component="Cloud Native Events / Cloud Event Proxy" \
         version="v4.18.0" \
-        release="202410161955.p0.g8f61fa8.assembly.test.el9" \
-        io.openshift.build.commit.id="8f61fa873c8f83da4c07c75be03f57d799457a5c" \
+        release="202410241522.p0.g6aefbbe.assembly.test.el9" \
+        io.openshift.build.commit.id="6aefbbef95316c07d1fb9149416d628c3c251343" \
         io.openshift.build.source-location="https://github.com/redhat-cne/cloud-event-proxy" \
-        io.openshift.build.commit.url="https://github.com/redhat-cne/cloud-event-proxy/commit/8f61fa873c8f83da4c07c75be03f57d799457a5c"
+        io.openshift.build.commit.url="https://github.com/redhat-cne/cloud-event-proxy/commit/6aefbbef95316c07d1fb9149416d628c3c251343"
 

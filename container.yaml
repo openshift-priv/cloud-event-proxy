@@ -11,10 +11,10 @@
 platforms:
   only:
   - aarch64
-  - x86_64
   - ppc64le
+  - x86_64
 tags:
 - assembly.test
 - v4.18
 - v4.18.0
-- v4.18.0.20241016.195524
+- v4.18.0.20241024.152230
